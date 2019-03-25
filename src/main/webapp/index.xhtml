@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <title>JavaEE8</title>
+    </h:head>
+
+    <h:body>
+
+        <hr/>
+
+        <h1>App Jsf 2.3</h1>
+
+        <h:form>
+
+            <h:commandButton value="Enviar" action="#{indexController.mostrarMensagem}"/>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <h:outputLabel value="#{indexController.mensagem}" />
+
+            <br/>
+            <br/>
+            <br/>
+
+            <h:outputLabel value="#{indexController.contador}" />
+
+            <br/>
+            <br/>
+            <br/>
+
+            <h:outputLabel value="#{indexController.servidor}" />
+
+            <br/>
+            <br/>
+            <br/>
+
+            Button : Navegação Implícita <br/>
+
+            <h:commandButton value="Cavera" label="Cavera" action="pagCavera?faces-redirect=true"/>
+            <h:commandButton value="Prime" label="Prime" action="pagPrime?faces-redirect=true"/>
+            <h:commandButton value="Layout" label="Layout" action="pagLayout?faces-redirect=true"/>
+            <h:commandButton value="DataHora" label="DataHora" action="pagDataHora"/>
+
+            <br/>
+            <br/>
+            <br/>
+
+            Link : Navegação Implícita <br/>
+
+
+            <h:commandLink value = "DataHora" action="pagDataHora" /><br/>
+            <h:commandLink value = "Cavera" action="pagCavera?faces-redirect=true" /><br/>
+
+            <br/>
+            <br/>
+            <br/>
+
+             Navegação Explícita : faces-config.xml <br/>
+
+        </h:form>
+
+
+
+    </h:body>
+
+</html>
