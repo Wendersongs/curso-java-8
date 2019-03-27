@@ -1,53 +1,54 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
-
-
-
-/*
-@NamedQueries({
-        @NamedQuery(name = "Movie.findAll", query = "SELECT m FROM Movie m"),
-        @NamedQuery(name = "Movie.findById", query = "SELECT m FROM Movie m WHERE m.id = :id"),
-        @NamedQuery(name = "Movie.findByName", query = "SELECT m FROM Movie m WHERE m.name = :name"),
-        @NamedQuery(name = "Movie.findByActors", query = "SELECT m FROM Movie m WHERE m.actors = :actors") })
-*/
 
 @Entity
 public class Pessoa implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Nome deve ser preenchido!")
     private String nome;
-
-    private Integer idade;
-
-    private LocalDate dataNascimento;
-
+    private String cpf;
+    private String endereco;
+    private String telefone;
     private LocalDateTime dataCriacao;
 
+    public Pessoa() {
+    }
+
+    @PrePersist
+    @PreUpdate
+    private void prePersist(){
+        this.setDataCriacao(LocalDateTime.now());
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Pessoa pessoa = (Pessoa) o;
-        return Objects.equals(id, pessoa.id);
+
+        return id != null ? id.equals(pessoa.id) : pessoa.id == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return id != null ? id.hashCode() : 0;
     }
 
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
 
     public Long getId() {
         return id;
@@ -65,28 +66,27 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getIdade() {
-        return idade;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setIdade(Integer idade) {
-        this.idade = idade;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
-
 }

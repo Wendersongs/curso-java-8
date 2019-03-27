@@ -1,7 +1,8 @@
 package servico;
 
 import model.Pessoa;
-import repositorio.PessoaDao;
+import repositorio.PessoaDAO;
+
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,7 +14,7 @@ public class TesteServ implements Serializable {
 
 
     @Inject
-    private PessoaDao pessoaDao;
+    private PessoaDAO pessoaDao;
 
     @Transactional
     public void salvar(Pessoa pessoa) {
